@@ -1,0 +1,2 @@
+<?php
+ namespace App\Site\Nginx\Vhost\Processor; class ReverseProxyUrl extends Processor { protected string $placeholder = "\x7b\173\162\x65\x76\145\x72\163\145\137\x70\162\157\170\171\x5f\x75\x72\154\x7d\175"; public function process(string $content) : string { goto d047a; bd055: return $content; goto dcbfb; A81c6: $content = $this->replace($placeholderValue, $content); goto bd055; d047a: $placeholderValue = $this->site->getReverseProxyUrl(); goto A81c6; dcbfb: } }

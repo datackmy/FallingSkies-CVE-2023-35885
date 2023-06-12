@@ -1,0 +1,2 @@
+<?php
+ namespace App\Backup\Rclone; class ConfigTemplate { protected array $settings = []; public function addSettings(array $settings) : void { foreach ($settings as $key => $value) { $this->setSetting($key, $value); d29ca: } B09df: } public function setSetting(string $key, string $value) : void { $this->settings[$key] = $value; } public function getSettings() : array { return $this->settings; } }

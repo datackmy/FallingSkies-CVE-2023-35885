@@ -1,0 +1,54 @@
+includes:
+    - phpstan-baseline.neon
+    - phpstan-params.neon
+
+parameters:
+    ignoreErrors:
+        # deprecations from doctrine/dbal:3.x
+        - '/^Call to an undefined method Doctrine\\DBAL\\Platforms\\AbstractPlatform::getGuidExpression\(\).$/'
+
+        # Fallback logic for DBAL 2
+        -
+            message: '/HelperSet constructor expects/'
+            path: lib/Doctrine/ORM/Tools/Console/ConsoleRunner.php
+        -
+            message: '/Application::add\(\) expects Symfony\\Component\\Console\\Command\\Command/'
+            path: lib/Doctrine/ORM/Tools/Console/ConsoleRunner.php
+
+        - '/^Class Doctrine\\DBAL\\Platforms\\(PostgreSQL|SQLServer|SQLAnywhere)Platform not found\.$/'
+
+        -
+        	message: '/^Call to an undefined method Doctrine\\DBAL\\Platforms\\AbstractPlatform::getSQLResultCasing\(\)\.$/'
+        	path: lib/Doctrine/ORM/Internal/SQLResultCasing.php
+        -
+        	message: '/^Parameter \$stmt of method .* has invalid type Doctrine\\DBAL\\Driver\\ResultStatement\.$/'
+        	path: lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php
+        -
+        	message: '/^Class Doctrine\\DBAL\\Driver\\ResultStatement not found\.$/'
+        	path: lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php
+        -
+        	message: '/^Call to static method ensure\(\) on an unknown class Doctrine\\DBAL\\ForwardCompatibility\\Result\.$/'
+        	path: lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php
+
+        # False positive
+        -
+            message: '/^Variable \$offset in isset\(\) always exists and is not nullable\.$/'
+            path: lib/Doctrine/ORM/PersistentCollection.php
+        -
+            message: '/^Call to an undefined method Doctrine\\Common\\Cache\\Cache::deleteAll\(\)\.$/'
+            count: 1
+            path: lib/Doctrine/ORM/Tools/Console/Command/ClearCache/ResultCommand.php
+
+        # Symfony cache supports passing a key prefix to the clear method.
+        - '/^Method Psr\\Cache\\CacheItemPoolInterface\:\:clear\(\) invoked with 1 parameter, 0 required\.$/'
+
+        # Compatibility layer for AttributeDriver
+        -
+            message: "#^PHPDoc type Doctrine\\\\ORM\\\\Mapping\\\\Driver\\\\AttributeReader of property Doctrine\\\\ORM\\\\Mapping\\\\Driver\\\\AttributeDriver\\:\\:\\$reader is not covariant with PHPDoc type Doctrine\\\\Common\\\\Annotations\\\\Reader of overridden property Doctrine\\\\Persistence\\\\Mapping\\\\Driver\\\\AnnotationDriver\\:\\:\\$reader\\.$#"
+            path: lib/Doctrine/ORM/Mapping/Driver/AttributeDriver.php
+        -
+            message: "#^PHPDoc type array\\<string, int\\> of property Doctrine\\\\ORM\\\\Mapping\\\\Driver\\\\AttributeDriver\\:\\:\\$entityAnnotationClasses is not covariant with PHPDoc type array\\<class\\-string, bool\\|int\\> of overridden property Doctrine\\\\Persistence\\\\Mapping\\\\Driver\\\\AnnotationDriver\\:\\:\\$entityAnnotationClasses\\.$#"
+            path: lib/Doctrine/ORM/Mapping/Driver/AttributeDriver.php
+        -
+            message: "#^Return type \\(Doctrine\\\\ORM\\\\Mapping\\\\Driver\\\\AttributeReader\\) of method Doctrine\\\\ORM\\\\Mapping\\\\Driver\\\\AttributeDriver\\:\\:getReader\\(\\) should be compatible with return type \\(Doctrine\\\\Common\\\\Annotations\\\\Reader\\) of method Doctrine\\\\Persistence\\\\Mapping\\\\Driver\\\\AnnotationDriver\\:\\:getReader\\(\\)$#"
+            path: lib/Doctrine/ORM/Mapping/Driver/AttributeDriver.php

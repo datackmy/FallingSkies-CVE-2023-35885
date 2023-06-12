@@ -1,0 +1,2 @@
+<?php
+ namespace App\Site\Ssl; class PublicKey extends Key { public function getResource() { goto Efa27; f7ab0: return $resource; goto B884e; Ec682: F8965: goto f7ab0; Efa27: if ($resource = openssl_pkey_get_public($this->keyPEM)) { goto F8965; } goto Cc7ef; Cc7ef: throw new \Exception(sprintf("\x46\x61\151\154\x65\144\x20\164\157\40\x63\157\x6e\166\145\162\x74\40\x6b\x65\171\x20\151\x6e\164\x6f\x20\162\x65\163\x6f\x75\x72\x63\145\x3a\x20\45\x73", openssl_error_string())); goto Ec682; B884e: } }

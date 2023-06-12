@@ -1,0 +1,10 @@
+parameters:
+    phpVersion: 80100
+    level: 3
+    paths:
+        - .
+    excludePaths:
+        - vendor
+
+includes:
+    - phpstan-baseline.neon

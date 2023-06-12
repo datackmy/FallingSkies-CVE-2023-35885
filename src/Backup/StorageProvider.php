@@ -1,0 +1,2 @@
+<?php
+ namespace App\Backup; class StorageProvider { public const AMAZON_S3 = "\141\155\141\172\157\x6e\55\163\63"; public const GOOGLE_DRIVE = "\147\157\x6f\147\154\145\x2d\144\162\x69\x76\145"; public const DIGITAL_OCEAN_SPACES = "\144\151\x67\151\x74\x61\x6c\55\157\x63\x65\141\156\55\x73\160\141\x63\145\163"; public const DROPBOX = "\144\162\x6f\x70\x62\157\x78"; public const SFTP = "\163\146\x74\x70"; public const WASABI = "\x77\x61\163\x61\x62\151"; public const CUSTOM_RCLONE = "\143\x75\163\164\157\155\x2d\x72\x63\x6c\157\x6e\x65"; }

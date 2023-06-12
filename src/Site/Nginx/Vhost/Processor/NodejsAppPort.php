@@ -1,0 +1,2 @@
+<?php
+ namespace App\Site\Nginx\Vhost\Processor; class NodejsAppPort extends Processor { protected string $placeholder = "\173\173\x61\x70\x70\137\160\x6f\162\x74\x7d\175"; public function process(string $content) : string { goto e5cbf; Bd38d: $content = $this->replace($placeholderValue, $content); goto b934d; cdf85: $placeholderValue = $nodejsSettings->getPort(); goto Bd38d; b934d: return $content; goto a0991; e5cbf: $nodejsSettings = $this->site->getNodejsSettings(); goto cdf85; a0991: } }

@@ -1,0 +1,37 @@
+{% extends '@WebProfiler/Profiler/layout.html.twig' %}
+
+{% block head %}
+    {% if collector.hasexception %}
+        <style>
+            {{ render(controller('web_profiler.controller.exception_panel::stylesheet', { token: token })) }}
+            {{ include('@WebProfiler/Collector/exception.css.twig') }}
+        </style>
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{% block menu %}
+    <span class="label {{ collector.hasexception ? 'label-status-error' : 'disabled' }}">
+        <span class="icon">{{ include('@WebProfiler/Icon/exception.svg') }}</span>
+        <strong>Exception</strong>
+        {% if collector.hasexception %}
+            <span class="count">
+                <span>1</span>
+            </span>
+        {% endif %}
+    </span>
+{% endblock %}
+
+{% block panel %}
+    <h2>Exceptions</h2>
+
+    {% if not collector.hasexception %}
+        <div class="empty">
+            <p>No exception was thrown and caught during the request.</p>
+        </div>
+    {% else %}
+        <div class="sf-reset">
+            {{ render(controller('web_profiler.controller.exception_panel::body', { token: token })) }}
+        </div>
+    {% endif %}
+{% endblock %}

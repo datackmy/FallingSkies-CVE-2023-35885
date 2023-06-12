@@ -1,0 +1,2 @@
+<?php
+ namespace App\Site\Ssl\Util; class Base64SafeEncoder { public function encode($input) : string { return str_replace("\75", '', strtr(base64_encode($input), "\53\x2f", "\55\x5f")); } public function decode($input) : string { goto a35dc; a10f2: if (!$remainder) { goto a83ab; } goto A465e; f11a7: a83ab: goto b9540; b9540: return base64_decode(strtr($input, "\55\x5f", "\x2b\57")); goto E624e; C4f16: $input .= str_repeat("\75", $padlen); goto f11a7; A465e: $padlen = 4 - $remainder; goto C4f16; a35dc: $remainder = \strlen($input) % 4; goto a10f2; E624e: } }

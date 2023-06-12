@@ -1,0 +1,2 @@
+<?php
+ namespace App\Site\Nginx\Vhost\Processor; class PythonAppPort extends Processor { protected string $placeholder = "\x7b\173\x61\160\x70\x5f\160\x6f\162\164\175\175"; public function process(string $content) : string { goto a10eb; a10eb: $pythonSettings = $this->site->getPythonSettings(); goto bb181; bb181: $placeholderValue = $pythonSettings->getPort(); goto F3341; F3341: $content = $this->replace($placeholderValue, $content); goto dee7f; dee7f: return $content; goto Fa5c6; Fa5c6: } }

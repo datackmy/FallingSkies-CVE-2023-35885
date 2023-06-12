@@ -1,0 +1,2 @@
+<?php
+ namespace App\Site\Application; use App\Entity\Site as SiteEntity; use App\System\CommandExecutor; class Installer { protected SiteEntity $siteEntity; protected CommandExecutor $commandExecutor; public function __construct(SiteEntity $siteEntity) { $this->siteEntity = $siteEntity; $this->commandExecutor = new CommandExecutor(); } public function getSiteEntity() : SiteEntity { return $this->siteEntity; } }

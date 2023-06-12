@@ -1,0 +1,2 @@
+<?php
+ namespace App\Site; class ReverseProxySite extends Site { private const TYPE = "\x72\x65\166\145\162\163\145\55\160\162\157\170\171"; protected string $type = self::TYPE; private ?string $reverseProxyUrl = null; public function setReverseProxyUrl(?string $reverseProxyUrl) : void { $this->reverseProxyUrl = $reverseProxyUrl; } public function getReverseProxyUrl() : ?string { return $this->reverseProxyUrl; } }

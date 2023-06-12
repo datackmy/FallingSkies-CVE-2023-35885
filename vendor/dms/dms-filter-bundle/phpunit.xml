@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<phpunit bootstrap="vendor/autoload.php" colors="true" verbose="true">
+
+    <testsuites>
+        <testsuite name="DMS Filter Bundle">
+            <directory>./src/DMS/Bundle/FilterBundle/Tests/</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>./src</directory>
+            <exclude>
+                <directory>./src/DMS/Bundle/FilterBundle/Tests</directory>
+                <directory>./src/DMS/Bundle/FilterBundle/Resources</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

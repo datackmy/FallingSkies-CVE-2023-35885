@@ -1,0 +1,2 @@
+<?php
+ namespace App\Site\Nginx\Vhost\Processor; class PhpFpmPort extends Processor { protected string $placeholder = "\173\x7b\x70\150\160\x5f\x66\x70\x6d\137\x70\157\x72\x74\175\175"; public function process(string $content) : string { goto b8f16; c46ea: return $content; goto f4dec; Ca9c3: $placeholderValue = $phpSettings->getPoolPort(); goto c87c3; c87c3: $content = $this->replace($placeholderValue, $content); goto c46ea; b8f16: $phpSettings = $this->site->getPhpSettings(); goto Ca9c3; f4dec: } }

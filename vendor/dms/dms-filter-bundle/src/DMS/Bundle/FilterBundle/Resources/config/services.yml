@@ -1,0 +1,45 @@
+parameters:
+    dms.filter.mapping.loader.class: DMS\Filter\Mapping\Loader\AnnotationLoader
+    dms.filter.mapping.factory.class: DMS\Filter\Mapping\ClassMetadataFactory
+    dms.filter.inner.filter.class: DMS\Filter\Filter
+
+services:
+    # Class service.
+    DMS\Bundle\FilterBundle\Service\Filter:
+        public: true
+        arguments:
+            - '@dms.filter.inner.filter'
+
+    DMS\Bundle\FilterBundle\Form\Type\FormTypeFilterExtension:
+        public: true
+        arguments:
+            - '@DMS\Bundle\FilterBundle\Service\Filter'
+            - '%dms_filter.auto_filter_forms%'
+        tags:
+            - { name: form.type_extension, alias: Symfony\Component\Form\Extension\Core\Type\FormType, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+
+    DMS\Bundle\FilterBundle\Loader\ContainerAwareLoader:
+        calls:
+         - [ setContainer,  ['@service_container'] ]
+
+    dms.filter.mapping.loader:
+        class: '%dms.filter.mapping.loader.class%'
+        public: true
+        arguments:
+            - '@annotation_reader'
+
+    dms.filter.mapping.factory:
+        class: '%dms.filter.mapping.factory.class%'
+        arguments:
+            - '@dms.filter.mapping.loader'
+
+    dms.filter.inner.filter:
+        class: '%dms.filter.inner.filter.class%'
+        arguments:
+            - '@dms.filter.mapping.factory'
+            - '@DMS\Bundle\FilterBundle\Loader\ContainerAwareLoader'
+
+    DMS\Bundle\FilterBundle\Filter\ContainerFilter:
+        public: true
+        calls:
+            - [setContainer, ['@service_container']]

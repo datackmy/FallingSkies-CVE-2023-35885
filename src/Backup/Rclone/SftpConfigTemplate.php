@@ -1,0 +1,2 @@
+<?php
+ namespace App\Backup\Rclone; class SftpConfigTemplate extends ConfigTemplate { private const TYPE = "\x73\x66\164\160"; private const SHELL_TYPE = "\165\156\151\x78"; private const DISABLE_HASH_CHECK = "\164\x72\165\x65"; private array $defaultSettings = ["\164\171\160\x65" => self::TYPE, "\x73\150\145\154\154\137\164\171\x70\145" => self::SHELL_TYPE, "\x64\151\163\x61\142\154\145\x5f\150\141\x73\x68\143\150\145\143\x6b" => self::DISABLE_HASH_CHECK]; public function __construct() { $this->addSettings($this->defaultSettings); } }

@@ -1,0 +1,2 @@
+<?php
+ namespace App\Util; class Retry { public static function retry(callable $fn, $retries = 2, $delay = 5) { beginning: try { return $fn(); } catch (\Exception $e) { goto c2cd9; d5b1b: throw $e; goto F9892; A904d: D41e9: goto d9816; F9892: A928c: goto ef41b; c2cd9: if ($retries) { goto A928c; } goto d5b1b; d9816: goto beginning; goto Bfd10; F3140: if (!$delay) { goto D41e9; } goto Df491; Df491: sleep($delay); goto A904d; ef41b: $retries--; goto F3140; Bfd10: } } }
